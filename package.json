@@ -2,7 +2,7 @@
   "name": "starter-env",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "author": "Chris Pruyne",
   "dependencies": {
     "whatwg-fetch": "1.0.0"
   },
@@ -42,14 +42,17 @@
     "webpack-md5-hash": "0.0.5"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prestart": "node buildScripts/startMessage.js",
+    "start": "npm-run-all --parallel security-check open:src",
+    "open:src": "node buildScripts/srcServer.js",
+    "security-check": "nsp check",
+    "localtunnel": "lt --port 3000",
+    "share": "npm-run-all --parallel open:src localtunnel"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ChrisPlease/starter-env.git"
   },
-  "author": "Chris Pruyne",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/ChrisPlease/starter-env/issues"
   },
